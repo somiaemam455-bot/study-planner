@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Study Title</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+ 
+    <header class="main-header">
+        <h1 id="welcome">Daily Study Planner</h1>
+        <p>Build Your Custom study schedule and evaluate your daily effort!</p>
+        
+        <!-- Navigation Buttons -->
+        <nav class="nav-bar" style="margin-top: 15px;">
+            <button onclick="showPage('plannerPage')" class="btn-second">📊 Planner & Tasks</button>
+            <button onclick="showPage('resourcesPage')" class="btn-primary">🎥 Resources & Media</button>
+        </nav>
+    </header>
+
+    <hr>
+
+    
+    <main id="plannerPage" class="page-section">
+         
+        <section id="quoteSection" class="card-box">
+            <h3>Daily Motivation For You:</h3>
+            <p id="motivationQuote" class="quote-text">Loading daily tip...</p>
+            <button onclick="displayRandomQuote()" class="btn-second">Get New Tip</button>
+        </section>
+
+        <hr>
+ 
+        <section class="card-box">
+            <h2>Step1/ Student Information</h2>
+            <label for="studentNameInput">Student Name:</label>
+            <input type="text" id="studentNameInput" placeholder="Enter your name">
+            <button onclick="setStudentName()" class="btn-primary">Save Name</button>
+            <p id="studentGreeting" class="greeting-message"></p>
+        </section>
+
+        <hr>
+
+        
+        <section class="card-box">
+            <h2>Step2/ Add Your Courses</h2>
+            <form id="courseform">
+                <label for="courseName">Courses Name:</label>
+                <input type="text" id="courseName" placeholder="Enter your course">
+                
+                <label for="courseHours">Study Hours:</label>
+                <input type="number" id="courseHours" placeholder="Enter your hours">
+                
+                <button type="button" onclick="addCourses()" class="btn-primary">Add Course to Table</button>
+            </form>
+        </section>
+
+        <hr>
+
+        <!-- Section: Courses Table -->
+        <section class="card-box">
+            <table border="1" id="scheduleTable" class="custom-table">
+                <thead>
+                    <tr>
+                        <th>Course Name</th>
+                        <th>Planned Hours</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="coursesTableBody">
+                    <!-- Dynamic Rows -->
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Total Planned Hours</th>
+                        <th id="totalHoursCell">0 Hours</th>
+                        <th>
+                            <button type="button" onclick="clearAllCourses()" class="btn-danger">Clear All</button>
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+        </section>
+
+        <hr>
+ 
+        <section class="card-box">
+            <h2>Step3/ Performance & Session Planner</h2>
+            <nav style="margin-bottom: 15px;">
+                <button onclick="checkPerformance()" class="btn-actoin">Evaluate Performance</button>
+                <button onclick="runSessionsLoop()" class="btn-actoin">Generate Study Sessions</button>
+            </nav>
+
+            <div id="evelutionBox" class="result-box">
+                <p id="gradeResult"></p>
+                <div id="badgeContainer"></div>
+            </div>
+
+            <div id="sessionsContanier" class="sessions-box"></div>
+        </section>
+    </main>
+
+      
+    <main id="resourcesPage" class="page-section" style="display: none;">
+    
+        <section class="card-box">
+            <h2>🎥 Study Techniques & Videos</h2>
+            <p style="margin-bottom: 15px;">Useful video guides to improve your focus:</p>
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px;">
+                <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" 
+                        src="https://www.youtube-nocookie.com/embed/mNBmG24djoY" 
+                        title="Study Tips Video" allowfullscreen></iframe>
+            </div>
+        </section>
+ 
+        <section class="card-box">
+            <h2>🖼️ Inspiration & Mindset</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;">
+                <div style="border: 1px solid #ebd8d8; border-radius: 10px; overflow: hidden; text-align: center;">
+                    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&auto=format&fit=crop" style="width: 100%; height: 140px; object-fit: cover;">
+                    <p style="padding: 8px; font-weight: bold;">Organize Workspace 📖</p>
+                </div>
+                <div style="border: 1px solid #ebd8d8; border-radius: 10px; overflow: hidden; text-align: center;">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&auto=format&fit=crop" style="width: 100%; height: 140px; object-fit: cover;">
+                    <p style="padding: 8px; font-weight: bold;">Track Goals 🎯</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Links -->
+        <section class="card-box">
+            <h2>🔗 Useful Resources & Links</h2>
+            <ul class="resource-list" style="padding-left: 20px; line-height: 2;">
+                <li><a href="https://www.coursera.org/articles/time-management-skills" target="_blank">Time Management Skills Guide</a></li>
+                <li><a href="https://todoist.com/productivity-methods/pomodoro-technique" target="_blank">Pomodoro Technique Guide</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <hr>
+
+    <footer>
+        <p>2026 Interactive Study Management System</p>
+    </footer>
+  
+<div id="achievementModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeAchievementModal()">&times;</span>
+        <div class="modal-icon">🏆🎉</div>
+        <h2>CONGRATULATIONS!</h2>
+        <h3>You hit 15 Study Hours!</h3>
+        <p>You have officially completed 15 hours of study focus today! You're showing incredible dedication and discipline. Take a well-deserved break and keep shining!</p>
+        <button onclick="closeAchievementModal()" class="btn-primary" style="margin-top: 15px;">Awesome! Claim My Badge ✨</button>
+    </div>
+</div>
+    
+
+</body>
+</html>
